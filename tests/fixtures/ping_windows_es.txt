@@ -1,0 +1,12 @@
+
+Haciendo ping a 1.1.1.1 con 32 bytes de datos:
+Respuesta desde 1.1.1.1: bytes=32 tiempo=21ms TTL=58
+Tiempo de espera agotado para esta solicitud.
+Respuesta desde 1.1.1.1: bytes=32 tiempo=19ms TTL=58
+Respuesta desde 1.1.1.1: bytes=32 tiempo=23ms TTL=58
+
+Estadísticas de ping para 1.1.1.1:
+    Paquetes: enviados = 4, recibidos = 3, perdidos = 1
+    (25% perdidos),
+Tiempos aproximados de ida y vuelta en milisegundos:
+    Mínimo = 19ms, Máximo = 23ms, Media = 21ms

@@ -1,0 +1,4 @@
+Filesystem     1024-blocks     Used Available Capacity Mounted on
+/dev/sda1         51474912 44273148   4563040      91% /
+/dev/sda15          106858     6182    100676       6% /boot/efi
+/dev/sdb1        103081248 20616252  77205836      22% /var/lib/data

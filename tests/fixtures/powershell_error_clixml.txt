@@ -1,0 +1,2 @@
+#< CLIXML
+<Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"><S S="Error">Get-WinEvent : The RPC server is unavailable_x000D__x000A_</S><S S="Error">At line:7 char:11_x000D__x000A_</S></Objs>

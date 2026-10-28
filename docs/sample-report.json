@@ -1,0 +1,372 @@
+{
+  "generated_at": "2026-10-28T09:30:00+00:00",
+  "host": {
+    "hostname": "srv-app-01",
+    "fqdn": "srv-app-01.example.local",
+    "os": "Linux-5.15.0-105-generic-x86_64-with-glibc2.35 (Ubuntu 22.04.4 LTS)",
+    "os_family": "linux",
+    "python": "3.12.3",
+    "toolkit_version": "0.1.0",
+    "mode": "local"
+  },
+  "overall_status": "CRIT",
+  "exit_code": 2,
+  "summary": {
+    "OK": 5,
+    "WARN": 3,
+    "CRIT": 4,
+    "ERROR": 0
+  },
+  "duration_ms": 1180.0,
+  "results": [
+    {
+      "status": "CRIT",
+      "message": "No resuelven: intranet.example.local",
+      "details": {
+        "items": [
+          {
+            "name": "google.com",
+            "status": "OK",
+            "addresses": [
+              "203.0.113.10"
+            ],
+            "ms": 18.4
+          },
+          {
+            "name": "github.com",
+            "status": "OK",
+            "addresses": [
+              "203.0.113.10"
+            ],
+            "ms": 18.4
+          },
+          {
+            "name": "intranet.example.local",
+            "status": "CRIT",
+            "addresses": [],
+            "ms": 18.4,
+            "error": "[Errno 11001] Name or service not known"
+          }
+        ]
+      },
+      "name": "dns",
+      "category": "network",
+      "duration_ms": 42.0
+    },
+    {
+      "status": "OK",
+      "message": "Gateway 10.0.0.1 responde (14 ms)",
+      "details": {
+        "items": [
+          {
+            "gateway": "10.0.0.1",
+            "interface": "eth0",
+            "metric": 100
+          }
+        ],
+        "ping": {
+          "sent": 4,
+          "received": 4,
+          "loss_pct": 0.0,
+          "rtt_min": 13.1,
+          "rtt_avg": 14.2,
+          "rtt_max": 15.3
+        }
+      },
+      "name": "gateway",
+      "category": "network",
+      "duration_ms": 42.0
+    },
+    {
+      "status": "OK",
+      "message": "8.8.8.8 14 ms/0% loss; 1.1.1.1 10 ms/0% loss",
+      "details": {
+        "items": [
+          {
+            "host": "8.8.8.8",
+            "status": "OK",
+            "sent": 4,
+            "received": 4,
+            "loss_pct": 0.0,
+            "rtt_min": 13.1,
+            "rtt_avg": 14.2,
+            "rtt_max": 15.3
+          },
+          {
+            "host": "1.1.1.1",
+            "status": "OK",
+            "sent": 2,
+            "received": 2,
+            "loss_pct": 0.0,
+            "rtt_min": 9.812,
+            "rtt_avg": 9.958,
+            "rtt_max": 10.104
+          }
+        ]
+      },
+      "name": "ping",
+      "category": "network",
+      "duration_ms": 42.0
+    },
+    {
+      "status": "CRIT",
+      "message": "Sin acceso: db01.example.local:5432: timeout (posible firewall)",
+      "details": {
+        "items": [
+          {
+            "target": "github.com:443",
+            "status": "OK",
+            "result": "abierto",
+            "ms": 18.4
+          },
+          {
+            "target": "1.1.1.1:53",
+            "status": "OK",
+            "result": "abierto",
+            "ms": 18.4
+          },
+          {
+            "target": "db01.example.local:5432",
+            "status": "CRIT",
+            "result": "timeout (posible firewall)",
+            "ms": 18.4
+          }
+        ]
+      },
+      "name": "tcp_ports",
+      "category": "network",
+      "duration_ms": 42.0
+    },
+    {
+      "status": "WARN",
+      "message": "portal.example.com vence en 13 días",
+      "details": {
+        "items": [
+          {
+            "host": "github.com",
+            "status": "OK",
+            "days_left": 107.6,
+            "expires": "2027-02-12",
+            "issuer": "Example CA"
+          },
+          {
+            "host": "www.google.com",
+            "status": "OK",
+            "days_left": 47.9,
+            "expires": "2026-12-15",
+            "issuer": "Example CA"
+          },
+          {
+            "host": "portal.example.com",
+            "status": "WARN",
+            "days_left": 13.1,
+            "expires": "2026-11-10",
+            "issuer": "Example CA"
+          }
+        ]
+      },
+      "name": "tls_certs",
+      "category": "tls",
+      "duration_ms": 42.0
+    },
+    {
+      "status": "OK",
+      "message": "CPU al 23% (4 cores)",
+      "details": {
+        "percent": 23.0,
+        "cores": 4,
+        "load_avg": [
+          0.92,
+          0.85,
+          0.8
+        ]
+      },
+      "name": "cpu",
+      "category": "system",
+      "duration_ms": 1000.0
+    },
+    {
+      "status": "WARN",
+      "message": "/ al 82% (9.0 GiB libres)",
+      "details": {
+        "items": [
+          {
+            "mountpoint": "/",
+            "device": "/dev/sda1",
+            "status": "WARN",
+            "percent": 82.0,
+            "free_gib": 9.0,
+            "total_gib": 50.0
+          },
+          {
+            "mountpoint": "/var/lib/data",
+            "device": "/dev/sdb1",
+            "status": "OK",
+            "percent": 30.0,
+            "free_gib": 140.0,
+            "total_gib": 200.0
+          }
+        ]
+      },
+      "name": "disk",
+      "category": "system",
+      "duration_ms": 42.0
+    },
+    {
+      "status": "OK",
+      "message": "Memoria al 61% (6.2 de 16.0 GiB disponibles)",
+      "details": {
+        "percent": 61.0,
+        "total_gib": 16.0,
+        "available_gib": 6.2,
+        "swap_percent": 3.0
+      },
+      "name": "memory",
+      "category": "system",
+      "duration_ms": 42.0
+    },
+    {
+      "status": "OK",
+      "message": "Uptime 12d 5h 0m",
+      "details": {
+        "seconds": 1054800,
+        "human": "12d 5h 0m",
+        "boot_time": "2026-10-16T04:30:00+00:00"
+      },
+      "name": "uptime",
+      "category": "system",
+      "duration_ms": 42.0
+    },
+    {
+      "status": "CRIT",
+      "message": "Servicios con problemas: nginx (failed), certbot-renew.timer (failed)",
+      "details": {
+        "items": [
+          {
+            "service": "ssh",
+            "status": "OK",
+            "state": "active"
+          },
+          {
+            "service": "cron",
+            "status": "OK",
+            "state": "active"
+          },
+          {
+            "service": "nginx",
+            "status": "CRIT",
+            "state": "failed"
+          },
+          {
+            "service": "certbot-renew.timer",
+            "status": "WARN",
+            "state": "failed"
+          }
+        ]
+      },
+      "name": "services",
+      "category": "services",
+      "duration_ms": 42.0
+    },
+    {
+      "status": "CRIT",
+      "message": "4 actualizaciones pendientes (3 de seguridad)",
+      "details": {
+        "manager": "apt",
+        "pending": 4,
+        "security": 3,
+        "items": [
+          {
+            "name": "curl",
+            "version": "7.81.0-1ubuntu1.18",
+            "security": true,
+            "source": "jammy-updates,jammy-security"
+          },
+          {
+            "name": "libssl3",
+            "version": "3.0.2-0ubuntu1.15",
+            "security": true,
+            "source": "jammy-updates,jammy-security"
+          },
+          {
+            "name": "openssl",
+            "version": "3.0.2-0ubuntu1.15",
+            "security": true,
+            "source": "jammy-updates,jammy-security"
+          },
+          {
+            "name": "tzdata",
+            "version": "2024a-0ubuntu0.22.04",
+            "security": false,
+            "source": "jammy-updates"
+          }
+        ]
+      },
+      "name": "updates",
+      "category": "updates",
+      "duration_ms": 42.0
+    },
+    {
+      "status": "WARN",
+      "message": "4 errores en las últimas 24 h (más frecuente: sshd x2), 1 críticos",
+      "details": {
+        "since_hours": 24,
+        "total": 4,
+        "critical": 1,
+        "truncated": false,
+        "top_sources": [
+          {
+            "source": "sshd",
+            "count": 2
+          },
+          {
+            "source": "nginx.service",
+            "count": 1
+          },
+          {
+            "source": "kernel",
+            "count": 1
+          }
+        ],
+        "items": [
+          {
+            "timestamp": "2026-10-26T10:33:20+00:00",
+            "level": "error",
+            "source": "sshd",
+            "event_id": null,
+            "log": "ssh.service",
+            "message": "error: bad bytes �"
+          },
+          {
+            "timestamp": "2026-10-26T09:33:20+00:00",
+            "level": "error",
+            "source": "nginx.service",
+            "event_id": null,
+            "log": "nginx.service",
+            "message": "nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)"
+          },
+          {
+            "timestamp": "2026-10-26T08:33:20+00:00",
+            "level": "critical",
+            "source": "kernel",
+            "event_id": null,
+            "log": "journal",
+            "message": "EXT4-fs error (device sda1): ext4_find_entry:1658: inode #2: comm ls: reading directory lblock 0"
+          },
+          {
+            "timestamp": "2026-10-26T07:33:20+00:00",
+            "level": "error",
+            "source": "sshd",
+            "event_id": null,
+            "log": "ssh.service",
+            "message": "error: kex_exchange_identification: Connection closed by remote host"
+          }
+        ]
+      },
+      "name": "recent_errors",
+      "category": "events",
+      "duration_ms": 42.0
+    }
+  ],
+  "skipped": []
+}

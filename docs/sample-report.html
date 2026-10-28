@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diagnóstico srv-app-01 · CRIT</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1d2330; --muted: #5d6677; --border: #dfe3ea;
+    --ok: #1f8a4c; --ok-bg: #e3f4ea; --warn: #9a6400; --warn-bg: #fdf1d8;
+    --crit: #b42318; --crit-bg: #fde4e1; --error: #5b3fb5; --error-bg: #ece6fb;
+    --mono: ui-monospace, "Cascadia Mono", Consolas, "DejaVu Sans Mono", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171d; --card: #1c2028; --text: #e3e7ee; --muted: #9aa3b2; --border: #2c323d;
+      --ok: #5fd08f; --ok-bg: #173826; --warn: #f2c063; --warn-bg: #3b2f14;
+      --crit: #ff8a7f; --crit-bg: #42201d; --error: #b9a5ff; --error-bg: #2b2443;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 1100px; margin: 0 auto; padding: 24px 16px 48px; }
+  header { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; }
+  h1 { font-size: 1.5rem; margin: 0; }
+  h2 { font-size: 1.1rem; margin: 32px 0 12px; }
+  .muted { color: var(--muted); }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+  .meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 16px; }
+  .meta div span { display: block; font-size: .78rem; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+  .meta div strong { font-weight: 600; word-break: break-word; }
+  .summary { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .badge { display: inline-block; min-width: 56px; text-align: center; padding: 2px 10px; border-radius: 999px;
+           font-weight: 700; font-size: .8rem; letter-spacing: .03em; }
+  .badge.big { font-size: 1.1rem; padding: 6px 18px; }
+  .ok { color: var(--ok); background: var(--ok-bg); }
+  .warn { color: var(--warn); background: var(--warn-bg); }
+  .crit { color: var(--crit); background: var(--crit-bg); }
+  .error { color: var(--error); background: var(--error-bg); }
+  .check { margin-bottom: 10px; padding: 0; overflow: hidden; }
+  .check summary { display: grid; grid-template-columns: 70px 150px 1fr auto; gap: 12px; align-items: center;
+                   padding: 12px 16px; cursor: pointer; list-style: none; }
+  .check summary::-webkit-details-marker { display: none; }
+  .check summary .name { font-family: var(--mono); font-weight: 600; }
+  .check summary .dur { font-family: var(--mono); font-size: .8rem; color: var(--muted); }
+  .check .body { border-top: 1px solid var(--border); padding: 12px 16px; overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+  th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; font-size: .78rem; text-transform: uppercase; }
+  td.mono, dd { font-family: var(--mono); font-size: .85rem; }
+  dl { display: grid; grid-template-columns: max-content 1fr; gap: 4px 16px; margin: 0 0 12px; }
+  dt { color: var(--muted); }
+  dd { margin: 0; word-break: break-word; }
+  footer { margin-top: 32px; font-size: .8rem; color: var(--muted); }
+  @media (max-width: 640px) {
+    .check summary { grid-template-columns: 64px 1fr; }
+    .check summary .msg { grid-column: 1 / -1; }
+    .check summary .dur { display: none; }
+  }
+  @media print { .check { break-inside: avoid; } details { display: block; } }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <h1>Reporte de diagnóstico</h1>
+      <div class="muted">srv-app-01 · 2026-10-28T09:30:00+00:00</div>
+    </div>
+    <span class="badge big crit">CRIT</span>
+  </header>
+
+  <section class="card meta">
+    <div><span>Host</span><strong>srv-app-01.example.local</strong></div>
+    <div><span>Sistema operativo</span><strong>Linux-5.15.0-105-generic-x86_64-with-glibc2.35 (Ubuntu 22.04.4 LTS)</strong></div>
+    <div><span>Modo</span><strong>local</strong></div>
+    <div><span>Exit code</span><strong>2</strong></div>
+    <div><span>Duración</span><strong>1.2 s</strong></div>
+    <div><span>Toolkit</span><strong>sysdiag 0.1.0</strong></div>
+  </section>
+
+  <div class="summary">
+    <span class="badge ok">OK: 5</span>
+    <span class="badge warn">WARN: 3</span>
+    <span class="badge crit">CRIT: 4</span>
+    <span class="badge error">ERROR: 0</span>
+  </div>
+
+  <h2>Resultados</h2>
+  <details class="card check" open>
+    <summary>
+      <span class="badge crit">CRIT</span>
+      <span class="name">dns</span>
+      <span class="msg">No resuelven: intranet.example.local</span>
+      <span class="dur">42 ms</span>
+    </summary>
+    <div class="body">
+        <table>
+          <thead><tr><th>name</th><th>status</th><th>addresses</th><th>ms</th><th>error</th></tr></thead>
+          <tbody>
+            <tr>
+<td class="mono">google.com</td><td><span class="badge ok">OK</span></td>
+<td class="mono">203.0.113.10</td>
+<td class="mono">18.4</td><td class="mono">—</td>            </tr>
+            <tr>
+<td class="mono">github.com</td><td><span class="badge ok">OK</span></td>
+<td class="mono">203.0.113.10</td>
+<td class="mono">18.4</td><td class="mono">—</td>            </tr>
+            <tr>
+<td class="mono">intranet.example.local</td><td><span class="badge crit">CRIT</span></td>
+<td class="mono"></td>
+<td class="mono">18.4</td><td class="mono">[Errno 11001] Name or service not known</td>            </tr>
+          </tbody>
+        </table>
+    </div>
+  </details>
+  <details class="card check" >
+    <summary>
+      <span class="badge ok">OK</span>
+      <span class="name">gateway</span>
+      <span class="msg">Gateway 10.0.0.1 responde (14 ms)</span>
+      <span class="dur">42 ms</span>
+    </summary>
+    <div class="body">
+      <dl>
+<dt>ping.sent</dt><dd>4</dd><dt>ping.received</dt><dd>4</dd><dt>ping.loss_pct</dt><dd>0.0</dd><dt>ping.rtt_min</dt><dd>13.1</dd><dt>ping.rtt_avg</dt><dd>14.2</dd><dt>ping.rtt_max</dt><dd>15.3</dd>      </dl>
+        <table>
+          <thead><tr><th>gateway</th><th>interface</th><th>metric</th></tr></thead>
+          <tbody>
+            <tr>
+<td class="mono">10.0.0.1</td><td class="mono">eth0</td><td class="mono">100</td>            </tr>
+          </tbody>
+        </table>
+    </div>
+  </details>
+  <details class="card check" >
+    <summary>
+      <span class="badge ok">OK</span>
+      <span class="name">ping</span>
+      <span class="msg">8.8.8.8 14 ms/0% loss; 1.1.1.1 10 ms/0% loss</span>
+      <span class="dur">42 ms</span>
+    </summary>
+    <div class="body">
+        <table>
+          <thead><tr><th>host</th><th>status</th><th>sent</th><th>received</th><th>loss_pct</th><th>rtt_min</th><th>rtt_avg</th><th>rtt_max</th></tr></thead>
+          <tbody>
+            <tr>
+<td class="mono">8.8.8.8</td><td><span class="badge ok">OK</span></td>
+<td class="mono">4</td><td class="mono">4</td><td class="mono">0.0</td><td class="mono">13.1</td><td class="mono">14.2</td><td class="mono">15.3</td>            </tr>
+            <tr>
+<td class="mono">1.1.1.1</td><td><span class="badge ok">OK</span></td>
+<td class="mono">2</td><td class="mono">2</td><td class="mono">0.0</td><td class="mono">9.812</td><td class="mono">9.958</td><td class="mono">10.104</td>            </tr>
+          </tbody>
+        </table>
+    </div>
+  </details>
+  <details class="card check" open>
+    <summary>
+      <span class="badge crit">CRIT</span>
+      <span class="name">tcp_ports</span>
+      <span class="msg">Sin acceso: db01.example.local:5432: timeout (posible firewall)</span>
+      <span class="dur">42 ms</span>
+    </summary>
+    <div class="body">
+        <table>
+          <thead><tr><th>target</th><th>status</th><th>result</th><th>ms</th></tr></thead>
+          <tbody>
+            <tr>
+<td class="mono">github.com:443</td><td><span class="badge ok">OK</span></td>
+<td class="mono">abierto</td><td class="mono">18.4</td>            </tr>
+            <tr>
+<td class="mono">1.1.1.1:53</td><td><span class="badge ok">OK</span></td>
+<td class="mono">abierto</td><td class="mono">18.4</td>            </tr>
+            <tr>
+<td class="mono">db01.example.local:5432</td><td><span class="badge crit">CRIT</span></td>
+<td class="mono">timeout (posible firewall)</td><td class="mono">18.4</td>            </tr>
+          </tbody>
+        </table>
+    </div>
+  </details>
+  <details class="card check" open>
+    <summary>
+      <span class="badge warn">WARN</span>
+      <span class="name">tls_certs</span>
+      <span class="msg">portal.example.com vence en 13 días</span>
+      <span class="dur">42 ms</span>
+    </summary>
+    <div class="body">
+        <table>
+          <thead><tr><th>host</th><th>status</th><th>days_left</th><th>expires</th><th>issuer</th></tr></thead>
+          <tbody>
+            <tr>
+<td class="mono">github.com</td><td><span class="badge ok">OK</span></td>
+<td class="mono">107.6</td><td class="mono">2027-02-12</td><td class="mono">Example CA</td>            </tr>
+            <tr>
+<td class="mono">www.google.com</td><td><span class="badge ok">OK</span></td>
+<td class="mono">47.9</td><td class="mono">2026-12-15</td><td class="mono">Example CA</td>            </tr>
+            <tr>
+<td class="mono">portal.example.com</td><td><span class="badge warn">WARN</span></td>
+<td class="mono">13.1</td><td class="mono">2026-11-10</td><td class="mono">Example CA</td>            </tr>
+          </tbody>
+        </table>
+    </div>
+  </details>
+  <details class="card check" >
+    <summary>
+      <span class="badge ok">OK</span>
+      <span class="name">cpu</span>
+      <span class="msg">CPU al 23% (4 cores)</span>
+      <span class="dur">1000 ms</span>
+    </summary>
+    <div class="body">
+      <dl>
+<dt>percent</dt><dd>23.0</dd><dt>cores</dt><dd>4</dd>      </dl>
+        <dl><dt>load_avg</dt><dd>0.92, 0.85, 0.8</dd></dl>
+    </div>
+  </details>
+  <details class="card check" open>
+    <summary>
+      <span class="badge warn">WARN</span>
+      <span class="name">disk</span>
+      <span class="msg">/ al 82% (9.0 GiB libres)</span>
+      <span class="dur">42 ms</span>
+    </summary>
+    <div class="body">
+        <table>
+          <thead><tr><th>mountpoint</th><th>device</th><th>status</th><th>percent</th><th>free_gib</th><th>total_gib</th></tr></thead>
+          <tbody>
+            <tr>
+<td class="mono">/</td><td class="mono">/dev/sda1</td><td><span class="badge warn">WARN</span></td>
+<td class="mono">82.0</td><td class="mono">9.0</td><td class="mono">50.0</td>            </tr>
+            <tr>
+<td class="mono">/var/lib/data</td><td class="mono">/dev/sdb1</td><td><span class="badge ok">OK</span></td>
+<td class="mono">30.0</td><td class="mono">140.0</td><td class="mono">200.0</td>            </tr>
+          </tbody>
+        </table>
+    </div>
+  </details>
+  <details class="card check" >
+    <summary>
+      <span class="badge ok">OK</span>
+      <span class="name">memory</span>
+      <span class="msg">Memoria al 61% (6.2 de 16.0 GiB disponibles)</span>
+      <span class="dur">42 ms</span>
+    </summary>
+    <div class="body">
+      <dl>
+<dt>percent</dt><dd>61.0</dd><dt>total_gib</dt><dd>16.0</dd><dt>available_gib</dt><dd>6.2</dd><dt>swap_percent</dt><dd>3.0</dd>      </dl>
+    </div>
+  </details>
+  <details class="card check" >
+    <summary>
+      <span class="badge ok">OK</span>
+      <span class="name">uptime</span>
+      <span class="msg">Uptime 12d 5h 0m</span>
+      <span class="dur">42 ms</span>
+    </summary>
+    <div class="body">
+      <dl>
+<dt>seconds</dt><dd>1054800</dd><dt>human</dt><dd>12d 5h 0m</dd><dt>boot_time</dt><dd>2026-10-16T04:30:00+00:00</dd>      </dl>
+    </div>
+  </details>
+  <details class="card check" open>
+    <summary>
+      <span class="badge crit">CRIT</span>
+      <span class="name">services</span>
+      <span class="msg">Servicios con problemas: nginx (failed), certbot-renew.timer (failed)</span>
+      <span class="dur">42 ms</span>
+    </summary>
+    <div class="body">
+        <table>
+          <thead><tr><th>service</th><th>status</th><th>state</th></tr></thead>
+          <tbody>
+            <tr>
+<td class="mono">ssh</td><td><span class="badge ok">OK</span></td>
+<td class="mono">active</td>            </tr>
+            <tr>
+<td class="mono">cron</td><td><span class="badge ok">OK</span></td>
+<td class="mono">active</td>            </tr>
+            <tr>
+<td class="mono">nginx</td><td><span class="badge crit">CRIT</span></td>
+<td class="mono">failed</td>            </tr>
+            <tr>
+<td class="mono">certbot-renew.timer</td><td><span class="badge warn">WARN</span></td>
+<td class="mono">failed</td>            </tr>
+          </tbody>
+        </table>
+    </div>
+  </details>
+  <details class="card check" open>
+    <summary>
+      <span class="badge crit">CRIT</span>
+      <span class="name">updates</span>
+      <span class="msg">4 actualizaciones pendientes (3 de seguridad)</span>
+      <span class="dur">42 ms</span>
+    </summary>
+    <div class="body">
+      <dl>
+<dt>manager</dt><dd>apt</dd><dt>pending</dt><dd>4</dd><dt>security</dt><dd>3</dd>      </dl>
+        <table>
+          <thead><tr><th>name</th><th>version</th><th>security</th><th>source</th></tr></thead>
+          <tbody>
+            <tr>
+<td class="mono">curl</td><td class="mono">7.81.0-1ubuntu1.18</td><td class="mono">True</td><td class="mono">jammy-updates,jammy-security</td>            </tr>
+            <tr>
+<td class="mono">libssl3</td><td class="mono">3.0.2-0ubuntu1.15</td><td class="mono">True</td><td class="mono">jammy-updates,jammy-security</td>            </tr>
+            <tr>
+<td class="mono">openssl</td><td class="mono">3.0.2-0ubuntu1.15</td><td class="mono">True</td><td class="mono">jammy-updates,jammy-security</td>            </tr>
+            <tr>
+<td class="mono">tzdata</td><td class="mono">2024a-0ubuntu0.22.04</td><td class="mono">False</td><td class="mono">jammy-updates</td>            </tr>
+          </tbody>
+        </table>
+    </div>
+  </details>
+  <details class="card check" open>
+    <summary>
+      <span class="badge warn">WARN</span>
+      <span class="name">recent_errors</span>
+      <span class="msg">4 errores en las últimas 24 h (más frecuente: sshd x2), 1 críticos</span>
+      <span class="dur">42 ms</span>
+    </summary>
+    <div class="body">
+      <dl>
+<dt>since_hours</dt><dd>24</dd><dt>total</dt><dd>4</dd><dt>critical</dt><dd>1</dd><dt>truncated</dt><dd>False</dd>      </dl>
+        <table>
+          <thead><tr><th>source</th><th>count</th></tr></thead>
+          <tbody>
+            <tr>
+<td class="mono">sshd</td><td class="mono">2</td>            </tr>
+            <tr>
+<td class="mono">nginx.service</td><td class="mono">1</td>            </tr>
+            <tr>
+<td class="mono">kernel</td><td class="mono">1</td>            </tr>
+          </tbody>
+        </table>
+        <table>
+          <thead><tr><th>timestamp</th><th>level</th><th>source</th><th>event_id</th><th>log</th><th>message</th></tr></thead>
+          <tbody>
+            <tr>
+<td class="mono">2026-10-26T10:33:20+00:00</td><td class="mono">error</td><td class="mono">sshd</td><td class="mono">—</td><td class="mono">ssh.service</td><td class="mono">error: bad bytes �</td>            </tr>
+            <tr>
+<td class="mono">2026-10-26T09:33:20+00:00</td><td class="mono">error</td><td class="mono">nginx.service</td><td class="mono">—</td><td class="mono">nginx.service</td><td class="mono">nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)</td>            </tr>
+            <tr>
+<td class="mono">2026-10-26T08:33:20+00:00</td><td class="mono">critical</td><td class="mono">kernel</td><td class="mono">—</td><td class="mono">journal</td><td class="mono">EXT4-fs error (device sda1): ext4_find_entry:1658: inode #2: comm ls: reading directory lblock 0</td>            </tr>
+            <tr>
+<td class="mono">2026-10-26T07:33:20+00:00</td><td class="mono">error</td><td class="mono">sshd</td><td class="mono">—</td><td class="mono">ssh.service</td><td class="mono">error: kex_exchange_identification: Connection closed by remote host</td>            </tr>
+          </tbody>
+        </table>
+    </div>
+  </details>
+
+
+  <footer>Generado por sysdiag 0.1.0 · Python 3.12.3</footer>
+</main>
+</body>
+</html>

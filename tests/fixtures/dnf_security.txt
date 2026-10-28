@@ -1,0 +1,2 @@
+RHSA-2024:1234 Important/Sec. kernel-5.14.0-362.24.1.el9_3.x86_64
+RHSA-2024:0310 Moderate/Sec.  openssl-libs-1:3.0.7-25.el9_3.x86_64

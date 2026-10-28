@@ -1,0 +1,16 @@
+===========================================================================
+Lista de interfaces
+ 12...00 15 5d 01 02 03 ......Microsoft Hyper-V Network Adapter
+  1...........................Software Loopback Interface 1
+===========================================================================
+
+IPv4 Tabla de enrutamiento
+===========================================================================
+Rutas activas:
+Destino de red        Máscara de red   Puerta de enlace   Interfaz  Métrica
+          0.0.0.0          0.0.0.0      192.168.1.1     192.168.1.50     25
+===========================================================================
+Rutas persistentes:
+  Dirección de red  Máscara de red  Dirección de puerta de enlace  Métrica
+          0.0.0.0          0.0.0.0      192.168.1.1  Predeterminada
+===========================================================================

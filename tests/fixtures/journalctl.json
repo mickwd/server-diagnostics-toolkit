@@ -1,0 +1,5 @@
+{"__REALTIME_TIMESTAMP":"1793000000000000","PRIORITY":"3","SYSLOG_IDENTIFIER":"sshd","_SYSTEMD_UNIT":"ssh.service","MESSAGE":"error: kex_exchange_identification: Connection closed by remote host"}
+{"__REALTIME_TIMESTAMP":"1793003600000000","PRIORITY":"2","SYSLOG_IDENTIFIER":"kernel","MESSAGE":"EXT4-fs error (device sda1): ext4_find_entry:1658: inode #2: comm ls: reading directory lblock 0"}
+{"__REALTIME_TIMESTAMP":"1793007200000000","PRIORITY":"3","_SYSTEMD_UNIT":"nginx.service","_COMM":"nginx","MESSAGE":"nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)"}
+{"__REALTIME_TIMESTAMP":"1793010800000000","PRIORITY":"3","SYSLOG_IDENTIFIER":"sshd","_SYSTEMD_UNIT":"ssh.service","MESSAGE":[101,114,114,111,114,58,32,98,97,100,32,98,121,116,101,115,32,255]}
+-- No entries --

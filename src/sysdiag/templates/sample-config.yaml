@@ -1,0 +1,79 @@
+# Configuración de ejemplo de sysdiag.
+# Todo lo que no se defina acá toma el valor por defecto (ver src/sysdiag/config.py).
+# Cualquier check se puede apagar con `enabled: false` y tener su propio `timeout_seconds`.
+
+timeout_seconds: 30      # timeout por check (global)
+max_workers: 16          # hilos en paralelo
+
+checks:
+  dns:
+    names: [google.com, github.com, intranet.example.local]
+    warn_ms: 300
+
+  tcp_ports:
+    # host:puerto. Distingue "rechazado" (servicio caído) de "timeout" (firewall).
+    targets:
+      - github.com:443
+      - 1.1.1.1:53
+      - db01.example.local:5432
+    connect_timeout: 3
+
+  ping:
+    hosts: [8.8.8.8, 1.1.1.1]
+    count: 4
+    timeout_ms: 1000
+    warn_ms: 100
+    crit_ms: 300
+    warn_loss_pct: 10
+    crit_loss_pct: 50
+
+  gateway:
+    ping: true           # algunos firewalls no responden ICMP: en ese caso queda en WARN
+    count: 2
+
+  tls_certs:
+    hosts: [github.com, www.google.com, portal.example.com:8443]
+    warn_days: 30
+    crit_days: 7
+    connect_timeout: 5
+    cafile: null         # bundle PEM de la CA interna, si hace falta validar certificados propios
+
+  disk:
+    warn_pct: 80
+    crit_pct: 90
+    exclude: []          # puntos de montaje a ignorar, ej. ["/boot/efi", "E:\\"]
+
+  memory:
+    warn_pct: 85
+    crit_pct: 95
+
+  cpu:
+    warn_pct: 85
+    crit_pct: 95
+    sample_seconds: 1.0
+    warn_load_per_core: 1.5   # solo modo remoto (se usa load average)
+    crit_load_per_core: 3.0
+
+  uptime:
+    warn_days: 90        # sin reiniciar hace mucho = parches de kernel sin aplicar
+    min_minutes: 15      # reinicio reciente inesperado
+
+  services:
+    windows: [EventLog, Dnscache, W32Time, LanmanServer]
+    linux: [cron, ssh]
+    windows_check_automatic: false   # también reporta servicios automáticos detenidos
+    linux_check_failed: true         # también reporta unidades systemd en estado failed
+
+  updates:
+    timeout_seconds: 300  # la consulta a Windows Update puede tardar varios minutos
+    warn_count: 1
+    crit_security: 1
+    max_days_since_patch: 45
+
+  recent_errors:
+    since_hours: 24
+    max_events: 200
+    warn_count: 1
+    crit_count: 25
+    windows_logs: [System, Application]
+    show_events: 20
